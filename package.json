@@ -1,0 +1,11 @@
+{
+  "name": "GermanyTravelGuide_b",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AIoT-cu/GermanyTravelGuide_b.git",
+  "author": "Strely02 <sandrapm.9811@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
