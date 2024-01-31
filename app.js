@@ -1,4 +1,3 @@
-// Import Dotenv and initialize
 const envImport = require("dotenv").config();
 const cors = require('cors');
 const express = require('express');
@@ -8,13 +7,14 @@ const app = express();
 app.use(
   cors({
     origin: "*",
-    // allowedHeaders: ["Authorization", "Content-Type"],
-    // exposedHeaders: ["Content-Length"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     // credentials: true,
+    // allowedHeaders: ["Authorization", "Content-Type"],
+    // exposedHeaders: ["Content-Length"],
   })
 );
 
+// Check if occurs any error when getting env variables
 if (envImport.error) {
   throw new Error(`Environment Variables - Import Error | ${envImport.error}`);
 }
