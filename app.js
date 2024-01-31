@@ -1,6 +1,5 @@
 // Import Dotenv and initialize
-require('dotenv').config();
-
+const envImport = require("dotenv").config();
 const cors = require('cors');
 const express = require('express');
 const app = express();
@@ -15,6 +14,10 @@ app.use(
     // credentials: true,
   })
 );
+
+if (envImport.error) {
+  throw new Error(`Environment Variables - Import Error | ${envImport.error}`);
+}
 
 // Use process.env.PORT with a default value
 const port = process.env.PORT;
