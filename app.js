@@ -5,8 +5,16 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
-// Use CORS with default settings (Allow all origins)
-app.use(cors());
+// Configure CORS
+app.use(
+  cors({
+    origin: "*",
+    // allowedHeaders: ["Authorization", "Content-Type"],
+    // exposedHeaders: ["Content-Length"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    // credentials: true,
+  })
+);
 
 // Use process.env.PORT with a default value
 const port = process.env.PORT;
