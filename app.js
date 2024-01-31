@@ -1,8 +1,12 @@
 // Import Dotenv and initialize
 require('dotenv').config();
 
+const cors = require('cors');
 const express = require('express');
 const app = express();
+
+// Use CORS with default settings (Allow all origins)
+app.use(cors());
 
 // Use process.env.PORT with a default value
 const port = process.env.PORT;
