@@ -1,4 +1,5 @@
 const placesData = require('../data/places.json');
+const Places = require("../models/places");
 
 // Controller: Get all places
 exports.getAllPlaces = (req, res) => {
@@ -15,4 +16,28 @@ exports.getPlaceDetailsById = (req, res) => {
     } else {
         res.status(404).json({ message: 'Place not found' });
     }
+};
+
+const createPlace = async (
+    place_name,
+    state_name,
+    place_description,
+    place_location,
+    place_image_url,
+) => {
+  try {
+    const place = await Places.create({
+        place_name,
+        state_name,
+        place_description,
+        place_location,
+        place_image_url,
+    });
+    return place;
+  } catch (error) {
+    console.error(error);
+    return {
+        error
+    }
+  }
 };
