@@ -29,7 +29,8 @@ const Places = sequelize.define(
     },
     {
         // Other model options go here
-        timestamps: false,
+        timestamps: true,
+        paranoid: true,
     }
 );
 
