@@ -18,7 +18,7 @@ exports.getPlaceDetailsById = (req, res) => {
     }
 };
 
-const createPlace = async (
+exports.createPlace = async (
     place_name,
     state_name,
     place_description,
