@@ -41,3 +41,22 @@ exports.createPlace = async (
     }
   }
 };
+
+exports.deletePlace = async (
+    placeId
+) => {
+  try {
+    const deleted = await Places.destroy({
+        where: {
+          id: parseInt(placeId)
+        }
+      });
+    // const deleted = await Places.destroy(placeId);
+    return deleted;
+  } catch (error) {
+    console.error(error);
+    return {
+        error
+    }
+  }
+};
