@@ -4,6 +4,8 @@ const express = require('express');
 const sequelize = require("./helpers/sequelize");
 const logger = require("./logger/logger");
 const requestLogger = require("./middlewares/requestLogger");
+const errorLogger = require("./middlewares/errorLogger");
+const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 
@@ -42,6 +44,7 @@ sequelize
 
 // Use loggers
 app.use(requestLogger);
+app.use(errorLogger);
 
 // Import the routes
 const placesRoutes = require('./routes/placesRoutes');
