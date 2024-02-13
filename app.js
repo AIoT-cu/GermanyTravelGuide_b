@@ -2,6 +2,7 @@ const envImport = require("dotenv").config();
 const cors = require('cors');
 const express = require('express');
 const sequelize = require("./helpers/sequelize");
+const logger = require("./logger/logger");
 const requestLogger = require("./middlewares/requestLogger");
 
 const app = express();
@@ -32,11 +33,11 @@ app.use(express.json());
 sequelize
   .sync()
   .then(() => {
-    console.log("All models were synchronized successfully.");
+    logger.info("All models were synchronized successfully.");
     // Start your application here
   })
   .catch((err) => {
-    console.error("An error occurred while synchronizing the models:", err);
+    logger.error("An error occurred while synchronizing the models:", err);
   });
 
 // Use loggers
@@ -54,5 +55,5 @@ app.use('/', categoriesRoutes);
 
 // Start the server
 app.listen(port, () => {
-  console.log(`The application is listening at http://localhost:${port}`);
+  logger.info(`The application is listening at http://localhost:${port}`);
 });
