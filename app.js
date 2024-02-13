@@ -7,6 +7,8 @@ const requestLogger = require("./middlewares/requestLogger");
 const errorLogger = require("./middlewares/errorLogger");
 const errorHandler = require("./middlewares/errorHandler");
 
+const AppError = require("./errors/AppError");
+
 const app = express();
 
 // Configure CORS
@@ -55,6 +57,19 @@ const categoriesRoutes = require('./routes/categoriesRoutes');
 app.use('/', placesRoutes);
 app.use('/', statesRoutes);
 app.use('/', categoriesRoutes);
+
+// Check if request to a non existing route
+app.all("*", (req, res, next) => {
+  const err = new AppError(
+    `Can't find ${req.originalUrl} on this server!`,
+    404
+  );
+
+  next(err);
+});
+
+// error handling
+app.use(errorHandler);
 
 // Start the server
 app.listen(port, () => {
