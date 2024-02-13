@@ -14,7 +14,15 @@ const logger = createLogger({
     logFormat
   ),
   transports: [
-    new transports.Console(),
+    new (transports.Console)({
+      format: format.combine(
+        format.colorize({
+          all:true
+        }), 
+        format.timestamp({
+          format:"YY-MM-DD HH:mm:ss"
+      }),)
+    }),
     new transports.File({ filename: 'logs/error.log', level: 'error' }),
     new transports.File({ filename: 'logs/combined.log' })
   ]
