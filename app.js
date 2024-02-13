@@ -39,9 +39,13 @@ sequelize
 
 // Import the routes
 const placesRoutes = require('./routes/placesRoutes');
+const statesRoutes = require('./routes/statesRoutes');
+const categoriesRoutes = require('./routes/categoriesRoutes');
 
 // Associate the routes with the app
 app.use('/', placesRoutes);
+app.use('/', statesRoutes);
+app.use('/', categoriesRoutes);
 
 // Start the server
 app.listen(port, () => {
