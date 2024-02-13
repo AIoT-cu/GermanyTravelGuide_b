@@ -24,6 +24,7 @@ exports.createPlace = async (
     place_description,
     place_location,
     place_image_url,
+    stateId
 ) => {
   try {
     const place = await Places.create({
@@ -32,6 +33,7 @@ exports.createPlace = async (
         place_description,
         place_location,
         place_image_url,
+        stateId
     });
     return place;
   } catch (error) {
