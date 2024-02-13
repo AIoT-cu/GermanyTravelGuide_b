@@ -3,6 +3,8 @@ const router = express.Router();
 
 // Import the controller
 const placesController = require('../controllers/placesController');
+// const placesCategoriesController = require('../controllers/placesCategoriesController');
+
 
 // Define routes using the controllers
 router.get('/places', placesController.getAllPlaces);
@@ -13,13 +15,15 @@ router.post('/places/create', async (req, res) => {
     const place_description = req.body.place_description;
     const place_location = req.body.place_location;
     const place_image_url = req.body.place_image_url;
+    const stateId = req.body.stateId;
 
     const place = await placesController.createPlace(
         place_name,
         state_name,
         place_description,
         place_location,
-        place_image_url)
+        place_image_url,
+        stateId)
     
     if(place.error){
         res.status(500).json({message: place.error});
@@ -41,5 +45,9 @@ router.delete('/places/:id', async (req, res) => {
         res.json({placeID, deleted});
     }
 });
+
+// Define routes for creating and removing relations between places and categories
+// router.post('/places-categories/create', placesCategoriesController.createRelation);
+// router.delete('/places-categories/remove', placesCategoriesController.removeRelation);
 
 module.exports = router;
