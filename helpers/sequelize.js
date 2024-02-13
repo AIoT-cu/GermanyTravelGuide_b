@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(`${process.env.DB_NAME}`, `${process.env.DB_USER}`, `${process.env.DB_PASS}`, {
     host: `${process.env.DB_HOST}`,
     dialect: `${process.env.DB_DIALECT}`, /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-    logging: console.log,
+    logging: false,
     // dialectOptions: {
     //   ssl: {
     //     require: true,
