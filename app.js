@@ -2,6 +2,8 @@ const envImport = require("dotenv").config();
 const cors = require('cors');
 const express = require('express');
 const sequelize = require("./helpers/sequelize");
+const requestLogger = require("./middlewares/requestLogger");
+
 const app = express();
 
 // Configure CORS
@@ -36,6 +38,9 @@ sequelize
   .catch((err) => {
     console.error("An error occurred while synchronizing the models:", err);
   });
+
+// Use loggers
+app.use(requestLogger);
 
 // Import the routes
 const placesRoutes = require('./routes/placesRoutes');
