@@ -53,13 +53,13 @@ app.use(errorLogger);
 const placesRoutes = require('./routes/placesRoutes');
 const statesRoutes = require('./routes/statesRoutes');
 const categoriesRoutes = require('./routes/categoriesRoutes');
-const authRoutes = require('./routes/authenticate');
+const usersRoutes = require('./routes/users');
 
 // Associate the routes with the app
 app.use('/', placesRoutes);
 app.use('/', statesRoutes);
 app.use('/', categoriesRoutes);
-app.use('/users', authenticate);
+app.use('/', usersRoutes);
 
 // Check if request to a non existing route
 app.all("*", (req, res, next) => {

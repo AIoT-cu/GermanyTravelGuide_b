@@ -13,7 +13,7 @@ const {
 
 const router = express.Router();
 
-router.post("/signup", authenticate(["admin"]), async (req, res, next) => {
+router.post("/signup", async (req, res, next) => {
     const { username, email, password, role } = req.body;
 
     if (!username || !email || !password || !role) {
@@ -33,6 +33,8 @@ router.post("/signup", authenticate(["admin"]), async (req, res, next) => {
 });
 
 router.post("/login", async (req, res, next) => {
+    console.log("login route");
+
     const { username, password } = req.body;
 
     try {
@@ -74,8 +76,9 @@ router.post("/user/refreshtoken", async (req, res, next) => {
 
 router.get(
     "/user/profile",
-    authenticate(["admin", "editor"]),
+    authenticate(["admin", "editor", "role"]),
     async (req, res, next) => {
+        console.log(JSON.stringify(Object.keys(req.params)))
         const { userId } = req.userData;
 
         try {
