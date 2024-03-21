@@ -6,6 +6,7 @@ const logger = require("./logger/logger");
 const requestLogger = require("./middlewares/requestLogger");
 const errorLogger = require("./middlewares/errorLogger");
 const errorHandler = require("./middlewares/errorHandler");
+const authenticate = require('./middlewares/authenticate');
 
 const AppError = require("./errors/AppError");
 
@@ -52,11 +53,13 @@ app.use(errorLogger);
 const placesRoutes = require('./routes/placesRoutes');
 const statesRoutes = require('./routes/statesRoutes');
 const categoriesRoutes = require('./routes/categoriesRoutes');
+const authRoutes = require('./routes/authenticate');
 
 // Associate the routes with the app
 app.use('/', placesRoutes);
 app.use('/', statesRoutes);
 app.use('/', categoriesRoutes);
+app.use('/users', authenticate);
 
 // Check if request to a non existing route
 app.all("*", (req, res, next) => {
