@@ -14,14 +14,19 @@ const createUser = async (username, email, password, role) => {
 };
 
 const login = async (username, password) => {
+    console.log("login controller");
+
     const user = await Users.findOne({ where: { username } });
+
+    console.log("user", JSON.stringify(user));
 
     if (!user) {
         throw new AppError(`Authentication failed`, 401);
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
-
+    console.log("passwordMatch", JSON.stringify(passwordMatch));
+    
     if (!passwordMatch) {
         throw new AppError(`Authentication failed`, 401);
     }
