@@ -3,6 +3,42 @@ const sequelize = require("../helpers/sequelize");
 const Categories = require('./categories');
 const States = require('./states');
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Places:
+ *       type: object
+ *       required:
+ *         - place_name
+ *         - state_name
+ *         - place_description
+ *         - place_location
+ *         - place_image_url
+ *       properties:
+ *         place_name:
+ *           type: string
+ *           description: El nombre del lugar.
+ *         state_name:
+ *           type: string
+ *           description: El nombre del estado al que pertenece el lugar.
+ *         place_description:
+ *           type: string
+ *           description: Una descripción del lugar.
+ *         place_location:
+ *           type: string
+ *           description: La ubicación del lugar.
+ *         place_image_url:
+ *           type: string
+ *           description: La URL de la imagen del lugar.
+ *       example:
+ *         place_name: Castillo de Neuschwanstein
+ *         state_name: Baviera
+ *         place_description: Un famoso castillo del siglo XIX en las colinas de Baviera.
+ *         place_location: Schwangau, Baviera, Alemania
+ *         place_image_url: https://example.com/neuschwanstein.jpg
+ */
+
 const Places = sequelize.define(
     "places",
     {
